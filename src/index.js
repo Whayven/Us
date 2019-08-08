@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './container/App';
+import AppWithAuth from './components/pages/Login/AppWithAuth';
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<AppWithAuth />, document.getElementById('root'));

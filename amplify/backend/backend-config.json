@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"client2e491f6f": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

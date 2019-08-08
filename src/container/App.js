@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import CrossfadeImage from 'react-crossfade-image';
-import Navigation from '../components/navigation/Navigation';
-import SignIn from '../components/pages/SignIn';
+// import Navigation from '../components/navigation/Navigation';
 import Journal from '../components/pages/Journal';
 import Gallery from '../components/pages/Gallery';
 
 import './App.css';
 // import Typography from '@material-ui/core/Typography';
+
 
 const images = [
   "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/51842331_2109706739096548_866928879430795264_n.jpg?_nc_cat=101&_nc_oc=AQmeQX1pJiirLfwXSMiu-DnWvxCH-pNq-foRUOJApMIKfHkfGkQx5aLq4yt9cudSDzo&_nc_ht=scontent-atl3-1.xx&oh=1ab835b7618391d7b3de7d4dedc6a2f5&oe=5DA7A12B",
@@ -17,8 +17,8 @@ const images = [
 ]
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       imageIndex: 0
     };
@@ -42,11 +42,10 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <Router>
+    // eslint-disable-next-line eqeqeq
+    if (this.props.authState === "signedIn") {
+      return (
         <div className="App">
-
-          <Navigation />
           <Route exact path="/" render={props => (
             <React.Fragment>
               <div className="container">
@@ -58,16 +57,14 @@ class App extends Component {
               </div>
             </React.Fragment>
           )} />
-
-          <Route path="/signin" component={SignIn} />
           <Route path="/journal" component={Journal} />
           <Route path="/gallery" component={Gallery} />
         </div>
-      </Router>
 
-    );
+
+      );
+    } else return null;
   }
-
 }
 
 export default App;

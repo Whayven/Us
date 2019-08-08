@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -42,6 +43,10 @@ export default function Navigation() {
     setAnchorEl(null);
   }
 
+  function handleSignOut() {
+    Auth.signOut();
+  }
+
   return (
 
     <div className={classes.root}>
@@ -76,11 +81,13 @@ export default function Navigation() {
             </MenuItem>
           </Menu>
           <Typography variant="h6" className={classes.title}>
-            My Awesome Website
+            My Website
           </Typography>
           <img src={logo} style={{ height: 'auto', width: 'auto', maxHeight: '62px', maxWidth: '250px', position: 'absolute', left: '50%' }} alt="logo" />
-          <Button color="inherit">
-            <Link to="/signin" className={classes.links}>Login</Link>
+          <Button color="inherit" onClick={handleSignOut}>
+            <Typography variant="subtitle2" className={classes.links}>
+              Sign Out
+            </Typography>
           </Button>
         </Toolbar>
       </AppBar>
